@@ -1,95 +1,57 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+import CardsSection from "@/components/homeNoAuth/CardsSection/CardsSection";
+import styles from "./page.module.scss";
+import HeaderNoAuth from "@/components/homeNoAuth/HeaderNoAuth/HeaderNoAuth";
+import PresentationSection from "@/components/homeNoAuth/PresentationSection/PresentationSection";
+import SlideSection from "@/components/homeNoAuth/SlideSection/SlideSection";
+import courseService, { CourseType } from "@/services/courseService";
+import { ReactNode, useEffect, useState } from "react";
+import Footer from "@/components/homeNoAuth/Footer/Footer";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+export const revalidate = 3600*24;
+interface HomeNotAuthPageProps {
+  children?: ReactNode;
+  course: CourseType[];
 }
+
+interface HomeNotAuthPageProps {
+  children?: ReactNode;
+  course: CourseType[];
+}
+
+export default function HomeNotAuth({ course }: HomeNotAuthPageProps) {
+  const [newestCourse, setNewestCourses] = useState(course);
+  const fetchCourses = async () => {
+    const courses: CourseType[] = await courseService.fetchNewestCourses();
+    setNewestCourses(courses);
+  };
+
+  useEffect(() => {
+    fetchCourses();
+  }, [newestCourse]);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
+  return (
+    <>
+      <main>
+        <div className={styles.sectionBackground} data-aos="fade-zoom-in" data-aos-duration="1600">
+          <HeaderNoAuth />
+          <PresentationSection />
+        </div>
+        <div data-aos="fade-right" data-aos-duration="1200">
+          <CardsSection />
+        </div>
+        <div data-aos="fade-up" data-aos-duration="1350">
+          <SlideSection newestCourses={newestCourse} />
+        </div>
+        <Footer />
+      </main>
+    </>
+  );
+}
+
