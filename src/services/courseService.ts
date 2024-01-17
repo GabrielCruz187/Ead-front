@@ -24,7 +24,6 @@ const courseService = {
       const newestCourses: CourseType[] = await api.get("/courses/newest").then((res) => res.data);
       return newestCourses
     } catch (error:any) {
-      console.error(error.response.data.message);
       return error.response;
     }
   })
