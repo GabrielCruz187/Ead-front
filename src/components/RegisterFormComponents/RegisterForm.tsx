@@ -1,17 +1,23 @@
-'use client'
+"use client";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import styles from "./styles.module.scss";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import authService from "@/services/authService";
-import ToastComponent from "../toastComponent/ToastComponent";
+import ToastComponent from "../common/toastComponent/ToastComponent";
 import { handleRegister } from "@/services/formServices";
 import { useRouter } from "next/navigation";
-
 
 export default function RegisterForm() {
   const router = useRouter();
   const [toastIsOpen, setToastIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+
+  useEffect(() => {
+    if (sessionStorage.getItem("onebitflix-token")) {
+      router.push("/home");
+    }
+  }, []);
+
   const handlerSubmit = async (event: FormEvent<HTMLFormElement>) => {
     const params = handleRegister(event);
     if (params.password != params.confirmPassword) {
@@ -21,9 +27,9 @@ export default function RegisterForm() {
       }, 1000 * 3);
       setToastMessage("Senha e confirmação diferentes.");
     }
-    const {data, status} = await authService.register(params);
+    const { data, status } = await authService.register(params);
 
-    if (status === 201 ) {
+    if (status === 201) {
       router.push("/login?registered=true");
     } else {
       setToastIsOpen(true);
@@ -32,7 +38,7 @@ export default function RegisterForm() {
       }, 1000 * 3);
       setToastMessage(data.message);
     }
- };
+  };
   return (
     <>
       <Form className={styles.form} onSubmit={(event) => handlerSubmit(event)}>

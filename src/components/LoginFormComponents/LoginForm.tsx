@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import styles from "./styles.module.scss";
 import { FormEvent, useEffect, useState } from "react";
 import authService from "@/services/authService";
-import ToastComponent from "../toastComponent/ToastComponent";
+import ToastComponent from "../common/toastComponent/ToastComponent";
 import { handleRegister } from "@/services/formServices";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -13,6 +13,12 @@ export default function LoginForm() {
   const [toastColor, setToastColor] = useState("");
   const [toastIsOpen, setToastIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+
+  useEffect(() => {
+    if (sessionStorage.getItem("onebitflix-token")) {
+      router.push("/home");
+    }
+  }, []);
 
   useEffect(() => {
     const registerSuccess = searchParams.get("registered");
@@ -31,9 +37,9 @@ export default function LoginForm() {
     const { email, password } = handleRegister(event);
 
     const { status } = await authService.login({ email, password });
-    console.log(status)
+    console.log(status);
 
-    if (status === 200 || status ===201 ) {
+    if (status === 200 || status === 201) {
       router.push("/home");
     } else {
       setToastColor("bg-danger");

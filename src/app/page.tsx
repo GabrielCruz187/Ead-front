@@ -1,17 +1,17 @@
 "use client";
 
-import CardsSection from "@/components/homeNoAuth/CardsSection/CardsSection";
+import CardsSection from "@/components/HomeNoAuthComponents/CardsSection/CardsSection";
 import styles from "./page.module.scss";
-import HeaderNoAuth from "@/components/homeNoAuth/HeaderNoAuth/HeaderNoAuth";
-import PresentationSection from "@/components/homeNoAuth/PresentationSection/PresentationSection";
-import SlideSection from "@/components/homeNoAuth/SlideSection/SlideSection";
+import HeaderNoAuth from "@/components/HomeNoAuthComponents/HeaderNoAuth/HeaderNoAuth";
+import PresentationSection from "@/components/HomeNoAuthComponents/PresentationSection/PresentationSection";
+import SlideSection from "@/components/HomeNoAuthComponents/SlideSection/SlideSection";
 import courseService, { CourseType } from "@/services/courseService";
 import { ReactNode, useEffect, useState } from "react";
-import Footer from "@/components/homeNoAuth/Footer/Footer";
+import Footer from "@/components/HomeNoAuthComponents/Footer/Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-export const revalidate = 3600*24;
+export const revalidate = 3600 * 24;
 interface HomeNotAuthPageProps {
   children?: ReactNode;
   course: CourseType[];
@@ -54,4 +54,3 @@ export default function HomeNotAuth({ course }: HomeNotAuthPageProps) {
     </>
   );
 }
-
