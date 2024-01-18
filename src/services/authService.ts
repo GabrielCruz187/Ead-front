@@ -27,7 +27,7 @@ const authService = {
   login: async( params: LoginParams ) =>{
     try {
       const authenticate = await api.post("/auth/login", params);
-      if(authenticate.status === 200) sessionStorage.setItem("onebitflix-token", authenticate.data.token);
+      if(authenticate.status === 200 || authenticate.status === 201) sessionStorage.setItem("onebitflix-token", authenticate.data.token);
       return authenticate;
     } catch (error: any) {
       if (error.response.status === 400 || error.response.status === 401) return error.response;
