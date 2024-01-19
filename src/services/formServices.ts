@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 
-export const handleRegister = (event: FormEvent<HTMLFormElement>) => {
+export  const formData = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   const formData = new FormData(event.currentTarget);

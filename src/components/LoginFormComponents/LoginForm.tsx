@@ -2,17 +2,32 @@
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import styles from "./styles.module.scss";
 import { FormEvent, useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import ToastComponent from "@/components/common/toastComponent/ToastComponent";
+import { formData } from "@/services/formServices";
 import authService from "@/services/authService";
-import ToastComponent from "../common/toastComponent/ToastComponent";
-import { handleRegister } from "@/services/formServices";
-import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginForm() {
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [toastColor, setToastColor] = useState("");
   const [toastIsOpen, setToastIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+
+  const handlerLogin = async (event: FormEvent<HTMLFormElement>) => {
+  const { email, password } = formData(event);
+  const { status } = await authService.login({ email, password });
+    if (status === 200 || status === 201) {
+      router.push("/home");
+    } else {
+      setToastColor("bg-danger");
+      setToastIsOpen(true);
+      setTimeout(() => {
+        setToastIsOpen(false);
+      }, 4000);
+      setToastMessage("Email ou senha incorretos!");
+    }
+  };
 
   useEffect(() => {
     if (sessionStorage.getItem("onebitflix-token")) {
@@ -27,32 +42,14 @@ export default function LoginForm() {
       setToastIsOpen(true);
       setTimeout(() => {
         setToastIsOpen(false);
-      }, 1000 * 4);
+      }, 4000);
       setToastMessage("Cadastro feito com sucesso!");
-      console.log(toastMessage);
     }
   }, [searchParams]);
 
-  const handlerLogin = async (event: FormEvent<HTMLFormElement>) => {
-    const { email, password } = handleRegister(event);
-
-    const { status } = await authService.login({ email, password });
-    console.log(status);
-
-    if (status === 200 || status === 201) {
-      router.push("/home");
-    } else {
-      setToastColor("bg-danger");
-      setToastIsOpen(true);
-      setTimeout(() => {
-        setToastIsOpen(false);
-      }, 1000 * 3);
-      setToastMessage("Email ou senha incorretos!");
-    }
-  };
   return (
     <>
-      <Form className={styles.form} onSubmit={(ev) => handlerLogin(ev)}>
+      <Form className={styles.form} onSubmit={(event) => handlerLogin(event)}>
         <p className="text-center">
           <strong>Bem-vindo(a) ao OneBitFlix!</strong>
         </p>

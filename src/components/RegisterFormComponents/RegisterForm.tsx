@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { FormEvent, useEffect, useState } from "react";
 import authService from "@/services/authService";
 import ToastComponent from "../common/toastComponent/ToastComponent";
-import { handleRegister } from "@/services/formServices";
+import { formData } from "@/services/formServices";
 import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
@@ -19,7 +19,7 @@ export default function RegisterForm() {
   }, []);
 
   const handlerSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    const params = handleRegister(event);
+    const params = formData(event);
     if (params.password != params.confirmPassword) {
       setToastIsOpen(true);
       setTimeout(() => {
