@@ -12,10 +12,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export const revalidate = 3600 * 24;
-interface HomeNotAuthPageProps {
-  children?: ReactNode;
-  course: CourseType[];
-}
 
 interface HomeNotAuthPageProps {
   children?: ReactNode;
