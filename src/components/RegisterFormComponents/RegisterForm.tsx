@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import styles from "./styles.module.scss";
 import { FormEvent, useEffect, useState } from "react";
 import authService from "@/services/authService";
-import ToastComponent from "../common/toastComponent/ToastComponent";
+import ToastComponent from "../common/ToastComponent";
 import { formData } from "@/services/formServices";
 import { useRouter } from "next/navigation";
 

@@ -1,7 +1,6 @@
 import api from "@/app/api/route";
 import { cache } from "react";
 
-
 export type EpisodeType = {
   id: number;
   name: string;
@@ -19,14 +18,79 @@ export type CourseType = {
 };
 
 const courseService = {
-  fetchNewestCourses:  cache (async () => {
+
+  fetchNewestCourses: cache(async () => {
     try {
-      const newestCourses: CourseType[] = await api.get("/courses/newest").then((res) => res.data);
-      return newestCourses
-    } catch (error:any) {
+      const newestCourses: CourseType[] = await api.get("/courses/newest");
+      return newestCourses;
+    } catch (error: any) {
       return error.response;
     }
-  })
+  }),
+
+  fetchFeaturedCourses: async () => {
+    try {
+      const token = sessionStorage.getItem("onebitflix-token");
+
+      const featured = await api.get("/courses/featured", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return featured;
+    } catch (error: any) {
+      return error.response;
+    }
+  },
+
+  addToFav: async (courseId: number | string) => {
+    try {
+      const token = sessionStorage.getItem("onebitflix-token");
+      const favorite = await api.post(
+        "/favorites",
+        { courseId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          data: { courseId },
+        }
+      );
+      return favorite;
+    } catch (error: any) {
+      return error.response;
+    }
+  },
+
+  removeFav: async (courseId: number | string) => {
+    try {
+      const token = sessionStorage.getItem("onebitflix-token");
+
+      const favorite = await api.delete("/favorites", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return favorite;
+    } catch (error: any) {
+      return error.response;
+    }
+  },
+  getFavCourses: async () => {
+    try {
+       const token = sessionStorage.getItem("onebitflix-token");
+
+    const favorite = await api
+      .get("/favorites", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      return favorite;
+    } catch (error: any) {
+      return error.response;
+    }
+  },
 };
 
 export default courseService;

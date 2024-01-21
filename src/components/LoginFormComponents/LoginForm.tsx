@@ -3,9 +3,9 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import styles from "./styles.module.scss";
 import { FormEvent, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import ToastComponent from "@/components/common/toastComponent/ToastComponent";
 import { formData } from "@/services/formServices";
 import authService from "@/services/authService";
+import ToastComponent from "../common/toastComponent/ToastComponent";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -15,8 +15,8 @@ export default function LoginForm() {
   const [toastMessage, setToastMessage] = useState("");
 
   const handlerLogin = async (event: FormEvent<HTMLFormElement>) => {
-  const { email, password } = formData(event);
-  const { status } = await authService.login({ email, password });
+    const { email, password } = formData(event);
+    const { status } = await authService.login({ email, password });
     if (status === 200 || status === 201) {
       router.push("/home");
     } else {
