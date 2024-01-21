@@ -1,5 +1,5 @@
-import FavoriteCourse from "@/components/HomeAuthComponents/favoriteCourses/favoriteCourses";
-import FeaturedCategory from "@/components/HomeAuthComponents/featuredCategory/featuredCategory";
+import FavoriteCourse from "@/components/HomeAuthComponents/favoriteCourses/FavoriteCourses";
+import FeaturedCategory from "@/components/HomeAuthComponents/featuredCategory/FeaturedCategory";
 import FeaturedSection from "@/components/HomeAuthComponents/featuredSection/FeaturedSection";
 import HeaderAuth from "@/components/HomeAuthComponents/headerAuth/HeaderAuth";
 import ListCategories from "@/components/HomeAuthComponents/listCategories/ListCategories";

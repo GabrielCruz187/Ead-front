@@ -21,8 +21,8 @@ interface HomeNotAuthPageProps {
 export default function HomeNotAuth({ course }: HomeNotAuthPageProps) {
   const [newestCourse, setNewestCourses] = useState(course);
   const fetchCourses = async () => {
-    const courses: CourseType[] = await courseService.fetchNewestCourses();
-    setNewestCourses(courses);
+    const courses = await courseService.fetchNewestCourses();
+    setNewestCourses(courses.data);
   };
 
   useEffect(() => {
