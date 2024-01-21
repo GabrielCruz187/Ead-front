@@ -62,7 +62,7 @@ const courseService = {
     }
   },
 
-  removeFav: async (courseId: number | string) => {
+  removeFav: async () => {
     try {
       const token = sessionStorage.getItem("onebitflix-token");
 
