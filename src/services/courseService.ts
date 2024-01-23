@@ -18,7 +18,6 @@ export type CourseType = {
 };
 
 const courseService = {
-
   fetchNewestCourses: cache(async () => {
     try {
       const newestCourses: CourseType[] = await api.get("/courses/newest");
@@ -78,18 +77,34 @@ const courseService = {
   },
   getFavCourses: async () => {
     try {
-       const token = sessionStorage.getItem("onebitflix-token");
+      const token = sessionStorage.getItem("onebitflix-token");
 
-    const favorite = await api
-      .get("/favorites", {
+      const favorite = await api.get("/favorites", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
+      });
       return favorite;
     } catch (error: any) {
       return error.response;
     }
+  },
+  getSearch: async (name: string) => {
+    try {
+      const token = sessionStorage.getItem("onebitflix-token");
+      console.log(token)
+      const res = await api.get(`/courses/search?name=${name}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        console.log(res)
+        return res
+
+    } catch (error:any) {
+      return error.response;
+    }
+
   },
 };
 
