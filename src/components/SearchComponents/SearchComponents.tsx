@@ -11,13 +11,11 @@ export default function SearchComponents({ searchParams }: { searchParams: { nam
   const [searchResult, setSearchResult] = useState<CourseType[]>([]);
 
   const searchName = searchParams.name;
+  console.log(searchName)
   const searchCourses = async function () {
     if (typeof searchName === "string") {
       const res = await courseService.getSearch(searchName);
       setSearchResult(res.data.courses);
-      // if (res.data.courses.length === 0) {
-      //   setSearchRender(false);
-      // }
     }
   };
   useEffect(() => {
