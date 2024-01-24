@@ -1,4 +1,5 @@
 'use client'
+import PageSpinner from '@/components/common/pageSpinner/PageSpinner';
 import styles from './styles.module.scss'
 import courseService, { CourseType } from "@/services/courseService";
 import Link from "next/link";
@@ -10,7 +11,7 @@ export default function FeaturedSection(){
 
     if (error) return error;
     if (!data) 
-    return (<><p>Loading...</p></>);
+    return (<><PageSpinner/></>);
 
     return (
       <>

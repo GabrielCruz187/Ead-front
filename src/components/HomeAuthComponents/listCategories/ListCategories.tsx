@@ -3,12 +3,17 @@ import categoriesService, { CategoryType } from '@/services/categoriesService';
 import styles from './styles.module.scss'
 import useSWR from 'swr';
 import ListCategoriesSlide from './ListCategoriesSlide';
+import PageSpinner from '@/components/common/pageSpinner/PageSpinner';
 
 export default function ListCategories(){
     const { data, error } = useSWR("/listCategories", categoriesService.getCategories);
 
     if (error) return error;
-    if (!data) return<></>;
+    if (!data) return (
+      <>
+        <PageSpinner />
+      </>
+    );
 
 return (
   <>

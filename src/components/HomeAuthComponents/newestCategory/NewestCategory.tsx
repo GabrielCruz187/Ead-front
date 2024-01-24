@@ -4,6 +4,7 @@ import SlideComponent from "@/components/common/SlideComponent";
 
 import useSWR from "swr";
 import courseService from "../../../services/courseService";
+import PageSpinner from "@/components/common/pageSpinner/PageSpinner";
 
 export default function NewestCategory() {
   const { data, error } = useSWR("/newest", courseService.fetchNewestCourses);
@@ -12,7 +13,7 @@ export default function NewestCategory() {
   if (!data)
     return (
       <>
-        <p>Loading...</p>
+        <PageSpinner />
       </>
     );
   return (

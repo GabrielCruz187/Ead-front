@@ -3,11 +3,12 @@ import courseService from "@/services/courseService";
 import styles from "./styles.module.scss"
 import useSWR from "swr";
 import SlideComponent from "@/components/common/SlideComponent";
+import PageSpinner from "@/components/common/pageSpinner/PageSpinner";
 
 export default function FavoriteCourse(){
     const { data, error } = useSWR("/favCourses", courseService.getFavCourses);
     if (error) return error;
-    if (!data) return <><p>Loading...</p></>;
+    if (!data)  return (<><PageSpinner/></>);
     return (
       <>
         <p className={styles.titleCategory}>Minha Lista</p>
