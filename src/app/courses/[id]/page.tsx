@@ -6,6 +6,8 @@ import courseService, { CourseType } from "@/services/courseService";
 import { useEffect, useState } from "react";
 import { Button, Container } from "reactstrap";
 import Footer from "@/components/HomeNoAuthComponents/Footer/Footer";
+import { useRouter } from "next/router";
+import PageSpinner from "@/components/common/pageSpinner/PageSpinner";
 
 type ParamsProps = {
   params: { id: number | string };
@@ -23,6 +25,8 @@ export const getCourseId = async ({ params }: ParamsProps) => {
   }
 };
 export default function Course({ params }: ParamsProps) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
   const [course, setCourse] = useState<CourseType>();
 
   const [liked, setLiked] = useState(false);
@@ -32,8 +36,8 @@ export default function Course({ params }: ParamsProps) {
   const getCourse = async () => {
     const course = await getCourseId({ params });
     setCourse(course);
-     setLiked(course.liked);
-     setFavorited(course.favorited);
+    setLiked(course.liked);
+    setFavorited(course.favorited);
   };
   const handleLikeCourse = async () => {
     if (liked === true) {
@@ -57,6 +61,17 @@ export default function Course({ params }: ParamsProps) {
   useEffect(() => {
     getCourse();
   }, [courseId]);
+  useEffect(() => {
+    if (!sessionStorage.getItem("onebitflix-token")) {
+      router.push("/login");
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  if (loading) {
+    return <PageSpinner />;
+  }
 
   return (
     <>
@@ -102,7 +117,7 @@ export default function Course({ params }: ParamsProps) {
             course?.episodes?.map((episode) => <EpisodeList key={episode.id} episode={episode} course={course} />)
           )}
         </Container>
-      <Footer/>
+        <Footer />
       </main>
     </>
   );

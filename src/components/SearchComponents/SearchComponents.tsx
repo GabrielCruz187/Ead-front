@@ -6,12 +6,15 @@ import { useEffect, useState } from "react";
 import { Container } from "reactstrap";
 import SearchCard from "./searchCard/SearchCard";
 import Footer from "../HomeNoAuthComponents/Footer/Footer";
+import { useRouter } from "next/router";
+import PageSpinner from "../common/pageSpinner/PageSpinner";
 
 export default function SearchComponents({ searchParams }: { searchParams: { name: string } }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
   const [searchResult, setSearchResult] = useState<CourseType[]>([]);
 
   const searchName = searchParams.name;
-  console.log(searchName)
   const searchCourses = async function () {
     if (typeof searchName === "string") {
       const res = await courseService.getSearch(searchName);
@@ -21,6 +24,17 @@ export default function SearchComponents({ searchParams }: { searchParams: { nam
   useEffect(() => {
     searchCourses();
   }, [searchName]);
+  useEffect(() => {
+    if (!sessionStorage.getItem("onebitflix-token")) {
+      router.push("/login");
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  if (loading) {
+    return <PageSpinner />;
+  }
   return (
     <>
       <HeaderAuth />

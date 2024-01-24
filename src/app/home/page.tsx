@@ -7,18 +7,24 @@ import ListCategories from "@/components/HomeAuthComponents/listCategories/ListC
 import NewestCategory from "@/components/HomeAuthComponents/newestCategory/NewestCategory";
 import Footer from "@/components/HomeNoAuthComponents/Footer/Footer";
 import Loading from "@/components/common/LoadingAnimation/Loading";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function HomeAuth() {
+  const router = useRouter();
   const [contentReady, setContentReady] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const authenticate = async () => {
       await new Promise((resolve) => setTimeout(resolve, 3000));
-      setContentReady(true);
+      if (!sessionStorage.getItem("onebitflix-token")) {
+        router.push("/login");
+      } else {
+        setContentReady(true);
+      }
     };
-    fetchData();
-  }, []);
+    authenticate();
+  }, [router]);
   return (
     <>
       {contentReady ? (
