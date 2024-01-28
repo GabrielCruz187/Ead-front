@@ -61,10 +61,20 @@ No final, percebi que poderia ter utilizado mais dos recursos do proprio NEXTjs,
 ## Screenshots
 Veja alguns screenshots do projeto final
 
+Home page
+
 ![Home page](./public/screenshots/Screen_Shot_home.png)
+
+Login page
 ![Login page](./public/screenshots/Screen_Shot_login.png)
+
+Register page
 ![Register page](./public/screenshots/Screen_Shot_registerForm.png)
+
+User Home page
 ![User Home page](./public/screenshots/Screen_Shot_userHome.png)
+
+Mobile version
 ![Mobile version](./public/screenshots/Screen_Shot_userHome_mobile.png)
 ![](./public/screenshots/Screen_Shot_coursePage_mobile.png)
 
