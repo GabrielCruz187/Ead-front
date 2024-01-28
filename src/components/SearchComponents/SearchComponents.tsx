@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Container } from "reactstrap";
 import SearchCard from "./searchCard/SearchCard";
 import Footer from "../HomeNoAuthComponents/Footer/Footer";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import PageSpinner from "../common/pageSpinner/PageSpinner";
 
 export default function SearchComponents({ searchParams }: { searchParams: { name: string } }) {

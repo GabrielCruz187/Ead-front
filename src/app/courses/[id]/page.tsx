@@ -6,7 +6,7 @@ import courseService, { CourseType } from "@/services/courseService";
 import { useEffect, useState } from "react";
 import { Button, Container } from "reactstrap";
 import Footer from "@/components/HomeNoAuthComponents/Footer/Footer";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import PageSpinner from "@/components/common/pageSpinner/PageSpinner";
 
 type ParamsProps = {
