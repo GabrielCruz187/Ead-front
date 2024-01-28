@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Frontend OnebitFlix
 
-First, run the development server:
+Esse é o Frontend para o projeto final do curso FullStack da Onebitecode. O projeto é uma especie de EAD de cursos com um design baseado na Netflix. [Clique aqui](https://github.com/thiagovt-dev/OnebitFlix_backend) e acesse o repositorio do backend do projeto
+
+
+## Algumas Stacks utilizada
+
+* Next.js 14
+* React
+* Typescript
+* Reactstrap
+* scss
+* Framer motion
+* Splide.js
+## Documentação
+
+Originalmente, o projeto foi elaborado utilizando a versão 12 do NEXTjs. Como o intuito era testar novas habilidades, resolvi utilizar a versão mais atual do NEXT que é a 14. [Confira aqui a documentação](https://nextjs.org/docs).
+
+A maior diferença da versão 12 para as versões posteriores, além de usar agora App router em vez do Pages Router é o fato da rederização do lado do cliente e do lado do servidor. Essa nova atualização permite separar o que vai ser renderizado do lado do cliente utilizando o "use client" e o que vai ser renderizado somente do lado do servidor, possibilitando uma aplicação mais rápido e menos JS no lado do cliente.
+
+
+
+
+
+
+
+
+## Rodando localmente
+
+Clone o projeto
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  gh repo clone thiagovt-dev/onebitflix_frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Entre no diretório do projeto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd OnebitFlix_frontend
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Instale as dependências
 
-## Learn More
+```bash
+  npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Certifique-se que as dependencias globais e de desenvolvimento foram instaladas conferindo o package.json
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Inicie o projeto localmente usando
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+    npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Obs.:** Se for executar localmente junto com a api do backend, inicie primeiro a api e depois o frontend.
+
+
+## Conclusão
+
+Por fim, o projeto foi excelente para por em prática os estudos e o desenvolvimento frontend. Como o projeto se trata de fins puramente acadêmicos, ainda não foi realizado o deploy, mas ele pode ser facilmente realizado posteriormente.
+No final, percebi que poderia ter utilizado mais dos recursos do proprio NEXTjs, mas irei aplicar nos proximos projetos
+## Screenshots
+Veja alguns screenshots do projeto final
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
