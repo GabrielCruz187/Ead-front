@@ -17,12 +17,7 @@ Esse é o Frontend para o projeto final do curso FullStack da Onebitecode. O pro
 
 Originalmente, o projeto foi elaborado utilizando a versão 12 do NEXTjs. Como o intuito era testar novas habilidades, resolvi utilizar a versão mais atual do NEXT que é a 14. [Confira aqui a documentação](https://nextjs.org/docs).
 
-A maior diferença da versão 12 para as versões posteriores, além de usar agora App router em vez do Pages Router é o fato da rederização do lado do cliente e do lado do servidor. Essa nova atualização permite separar o que vai ser renderizado do lado do cliente utilizando o "use client" e o que vai ser renderizado somente do lado do servidor, possibilitando uma aplicação mais rápido e menos JS no lado do cliente.
-
-
-
-
-
+A maior diferença da versão 12 para as versões posteriores, além de usar agora App router em vez do Pages Router é o fato da renderização do lado do cliente e do lado do servidor. Essa nova atualização permite separar o que vai ser renderizado do lado do cliente utilizando o "use client" e o que vai ser renderizado somente do lado do servidor, possibilitando uma aplicação mais rápido e menos JS no lado do cliente.
 
 
 
@@ -66,5 +61,11 @@ No final, percebi que poderia ter utilizado mais dos recursos do proprio NEXTjs,
 ## Screenshots
 Veja alguns screenshots do projeto final
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Home page](./public/screenshots/Screen_Shot_home.png)
+![Login page](./public/screenshots/Screen_Shot_login.png)
+![Register page](./public/screenshots/Screen_Shot_registerForm.png)
+![User Home page](./public/screenshots/Screen_Shot_userHome.png)
+![Mobile version](./public/screenshots/Screen_Shot_userHome_mobile.png)
+![](./public/screenshots/Screen_Shot_coursePage_mobile.png)
+
 
