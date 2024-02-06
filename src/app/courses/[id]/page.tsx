@@ -13,7 +13,7 @@ type ParamsProps = {
   params: { id: number | string };
 };
 
-export const getCourseId = async ({ params }: ParamsProps) => {
+const getCourseId = async ({ params }: ParamsProps) => {
   const courseId = params.id;
 
   if (typeof courseId !== "string") return;
@@ -24,6 +24,8 @@ export const getCourseId = async ({ params }: ParamsProps) => {
     return res.data;
   }
 };
+
+
 export default function Course({ params }: ParamsProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);

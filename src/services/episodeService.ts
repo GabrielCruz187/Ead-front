@@ -1,4 +1,4 @@
-import api from "@/app/api/route"
+import api from "@/services/api/route";
 
 interface watchTimeParams {
   episodeId: number;

@@ -1,5 +1,7 @@
-import api from "@/app/api/route";
+import api from "@/services/api/route";
 import { cache } from "react";
+
+export const revalidate = 3600 * 24;
 
 export type EpisodeType = {
   id: number;
@@ -52,7 +54,6 @@ const courseService = {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          
         }
       );
       return favorite;

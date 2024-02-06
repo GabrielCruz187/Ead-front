@@ -10,24 +10,25 @@ import { ReactNode, useEffect, useState } from "react";
 import Footer from "@/components/HomeNoAuthComponents/Footer/Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import HomeSlide from "@/components/HomeNoAuthComponents/HomeSlide";
 
 export const revalidate = 3600 * 24;
 
-interface HomeNotAuthPageProps {
-  children?: ReactNode;
-  course: CourseType[];
-}
+// interface HomeNotAuthPageProps {
+//   children?: ReactNode;
+//   course: CourseType[];
+// }
 
-export default function HomeNotAuth({ course }: HomeNotAuthPageProps) {
-  const [newestCourse, setNewestCourses] = useState(course);
-  const fetchCourses = async () => {
-    const courses = await courseService.fetchNewestCourses();
-    setNewestCourses(courses.data);
-  };
+export default function HomeNotAuth() {
+  // const [newestCourse, setNewestCourses] = useState(" ");
+  // const fetchCourses = async () => {
+  //   const courses = await courseService.fetchNewestCourses();
+  //   setNewestCourses(courses.data);
+  // };
 
-  useEffect(() => {
-    fetchCourses();
-  }, [newestCourse]);
+  // useEffect(() => {
+  //   fetchCourses();
+  // }, [newestCourse]);
 
   useEffect(() => {
     AOS.init();
@@ -43,7 +44,8 @@ export default function HomeNotAuth({ course }: HomeNotAuthPageProps) {
           <CardsSection />
         </div>
         <div data-aos="fade-up" data-aos-duration="1350">
-          <SlideSection newestCourses={newestCourse} />
+          <HomeSlide/>
+          {/* <SlideSection newestCourses={newestCourse} /> */}
         </div>
         <Footer />
       </main>
