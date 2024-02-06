@@ -1,3 +1,5 @@
+$lightGray: #ccc8c8;
+
 .container {
   padding: 0 2rem;
 }
@@ -127,3 +129,55 @@
     filter: invert(1);
   }
 }
+
+.sectionBackground {
+  background-image: linear-gradient(to bottom, #8b8b8b1a, #151515),
+    url("/homeNoAuth/imgBackgroundPresentation.png");
+	background-position: center;  
+	background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 1199px) and (min-width: 991px) {
+  .title {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .description {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 991px) {
+  .imgSection {
+    display: flex;
+    margin: 50px auto;
+  }
+  .title {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 34px;
+  }
+  .description {
+    font-size: 14px;
+    color: $lightGray;
+    margin: 20px 0px 40px 0px;
+  }
+  .btnCta {
+    padding: 10px 24px;
+  }
+}
+
+@media (max-width: 367px) {
+  .titleAccess {
+    font-size: 14px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .description {
+    font-size: 12px;
+  }
+}
+
+
