@@ -16,9 +16,12 @@ const PresentationSection = function () {
 				   <Button outline className={styles.btnCta}>ACESSE AGORA <img src="/buttonPlay.svg" alt="buttonImg" className={styles.btnImg}/></Button>
                 </Link>
                 </Col>
-				<Col className="d-flex justify-content-center pt-5" md>
-                <img src="/homeNotAuth/imgPresentation.png" alt="imgIndex" className={styles.img}/>
+				<Col md className="d-flex flex-column justify-content-center align-items-start">
+                <img src="/imgPresentation.png" alt="imgIndex" className={styles.imgPresentation}/>
                 </Col>
+                <Col className="d-flex justify-content-center pt-5">
+		        <img src="/iconArrowDown.svg" alt="arrowDown" className={styles.arrowImg}/>
+	            </Col>
 			</Row>
      </Container>
     </>
