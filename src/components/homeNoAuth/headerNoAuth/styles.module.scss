@@ -1,7 +1,6 @@
 @import "../../../../styles/colors.module.scss";
 
-
-
+//Call to action
 .ctaSection {
   background-color: $lightRed;
   display: flex;
@@ -13,41 +12,50 @@
 .imgCta {
   width: 20px;
 }
-.nav{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 20px;
+
+//Navbar
+.nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.imgLogoNav {
+  width: 180px;
 }
 .navBtn {
-    margin: 0px 5px;
-    border-color: transparent;
-    color: $lightGray;
-  
-    &:hover {
-      border-color: $lightRed;
-      color: white;
-      background-color: transparent;
-    }
+  margin: 0 5px;
+  border-color: transparent;
+  color: $lightGray;
+  &:hover {
+    border-color: $lightRed;
+    color: white;
+    background-color: transparent;
   }
-  @media (max-width: 442px) {
-    .nav {
-      justify-content: center;
-    }
-    .navBtn {
-      margin: 16px 10px;
-      border-color: white;
-      font-size: 14px;
-    }
-    .ctaSection {
-      gap: 10px;
-    }
+}
+
+//Responsividade
+@media (max-width: 451px) {
+  .ctaSection {
+    gap: 10px;
   }
-  @media (max-width: 329px) {
-    .ctaSection {
-      text-align: center;
-    }
-    .imgCta {
-      margin: 0px 8px;
-    }
+
+  .nav {
+    justify-content: center;
   }
+  .navBtn {
+    margin: 16px 10px;
+    border-color: white;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 335px) {
+  .ctaSection {
+    text-align: center;
+  }
+
+  .imgCta {
+    margin: 0 8px;
+  }
+}
