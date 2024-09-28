@@ -17,23 +17,41 @@ export interface RegisterParams {
 const authService = {
   register: async (params: RegisterParams) => {
     try {
-      const authenticate = await api.post("/auth/register", params);
-      return authenticate;
+      const response = await api.post("/auth/register", params);
+      return { data: response.data, status: response.status }; // Retorne um objeto com data e status
     } catch (error: any) {
-      if (error.response.status === 400) return error.response;
+      // Trate todos os tipos de erro
+      if (error.response) {
+        // Se houver uma resposta do servidor
+        return {
+          data: error.response.data,
+          status: error.response.status,
+        };
+      }
+      // Caso contrário, você pode retornar um erro genérico
+      return { data: { message: "Erro ao registrar. Tente novamente." }, status: 500 };
     }
   },
 
   login: async (params: LoginParams) => {
     try {
-      const authenticate = await api.post("/auth/login", params);
-      if (authenticate.status === 200 || authenticate.status === 201)
-        sessionStorage.setItem("onebitflix-token", authenticate.data.token);
-      return authenticate;
+      const response = await api.post("/auth/login", params);
+      if (response.status === 200 || response.status === 201) {
+        sessionStorage.setItem("onebitflix-token", response.data.token);
+      }
+      return { data: response.data, status: response.status }; // Retorne um objeto com data e status
     } catch (error: any) {
-      if (error.response.status === 400 || error.response.status === 401) return error.response;
+      // Trate todos os tipos de erro
+      if (error.response) {
+        return {
+          data: error.response.data,
+          status: error.response.status,
+        };
+      }
+      return { data: { message: "Erro ao conectar ao servidor. Tente novamente." }, status: 500 };
     }
   },
 };
 
 export default authService;
+
